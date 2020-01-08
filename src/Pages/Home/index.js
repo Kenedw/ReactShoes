@@ -1,59 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 
 import { ProductList } from './styles';
+import api from '../../services/api';
+import { formatPrice } from '../../util/format';
 
 export default function Home() {
+  const [productsList, setProductsList] = useState([]);
+
+  useEffect(() => {
+    async function loadProducts() {
+      try {
+        const response = await api.get('products');
+
+        const data = response.data.map(product => ({
+          ...product,
+          priceFormatted: formatPrice(product.price),
+        }));
+
+        setProductsList(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    loadProducts();
+  }, []);
+
   return (
     <ProductList>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/camisa-flamengo-samuca-n10-masculina/28/D40-1284-028/D40-1284-028_detalhe1.jpg"
-          alt="samuca"
-        />
-        <strong>Samuca</strong>
-        <span>R$ 123,00</span>
+      {productsList.map(product => (
+        <li key={product.id}>
+          <img src={product.image} alt={product.title} />
+          <strong>{product.title}</strong>
+          <span>{product.priceFormatted}</span>
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
+          <button type="button">
+            <div>
+              <MdAddShoppingCart size={16} color="#fff" /> 3
+            </div>
 
-          <span>ADICIONAR AO CARINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/camisa-flamengo-samuca-n10-masculina/28/D40-1284-028/D40-1284-028_detalhe1.jpg?resize=280:280"
-          alt="samuca"
-        />
-        <strong>Samuca</strong>
-        <span>R$ 123,00</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
-
-          <span>ADICIONAR AO CARINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/camisa-flamengo-samuca-n10-masculina/28/D40-1284-028/D40-1284-028_detalhe1.jpg?resize=280:280"
-          alt="samuca"
-        />
-        <strong>Samuca</strong>
-        <span>R$ 123,00</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
-
-          <span>ADICIONAR AO CARINHO</span>
-        </button>
-      </li>
+            <span>ADICIONAR AO CARINHO</span>
+          </button>
+        </li>
+      ))}
     </ProductList>
   );
 }
