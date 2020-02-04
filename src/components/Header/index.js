@@ -35,5 +35,5 @@ Header.defaultProps = {
 };
 
 export default connect(state => ({
-  cartSize: state.cart.length,
+  cartSize: state.cart.reduce((amount, product) => amount + product.amount, 0),
 }))(Header);

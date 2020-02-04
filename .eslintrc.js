@@ -19,8 +19,11 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
-    'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', 'js'] }],
     'import/prefer-default-export': 'off',
+    'no-console': ['error', { allow: ['tron'] }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'no-param-reassign': 'off',
+    'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', 'js'] }],
     'react/state-in-constructor': 'off',
     'react/static-property-placement': 'off',
     'jsx-a11y/control-has-associated-label': 'off',
