@@ -15,7 +15,7 @@ export default function cart(state = [], action) {
           });
         }
       });
-    case '@cart/REMOVE':
+    case '@Cart/REMOVE':
       return produce(state, draft => {
         const productIndex = draft.findIndex(p => p.id === action.id);
 
@@ -23,7 +23,7 @@ export default function cart(state = [], action) {
           draft.splice(productIndex, 1);
         }
       });
-    case '@cart/UPDATE': {
+    case '@Cart/UPDATE': {
       if (action.amount <= 0) {
         return state;
       }
