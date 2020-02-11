@@ -6,6 +6,7 @@ import {
 } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import { Container, ProductTable, Total } from './styles';
 import * as CartActions from '../../store/models/cart/actions';
@@ -87,6 +88,12 @@ function Cart({ cart, totalFormatted, removeFromCart, updateAmountProduct }) {
     </Container>
   );
 }
+Cart.propTypes = {
+  cart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  totalFormatted: PropTypes.number.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+  updateAmountProduct: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   cart: state.cart.map(product => ({

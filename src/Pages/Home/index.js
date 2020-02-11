@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import { ProductList } from './styles';
 import api from '../../services/api';
@@ -23,7 +24,8 @@ function Home({ amount, addToCart }) {
 
         setProductsList(data);
       } catch (err) {
-        console.log(err);
+        // eslint-disable-next-line no-console
+        console.trace(err);
       }
     }
 
@@ -55,6 +57,11 @@ function Home({ amount, addToCart }) {
     </ProductList>
   );
 }
+Home.propTypes = {
+  amount: PropTypes.arrayOf(PropTypes.number).isRequired,
+  addToCart: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   amount: state.cart.reduce((amount, product) => {
     amount[product.id] = product.amount;
