@@ -9,7 +9,7 @@ import api from '../../services/api';
 import { formatPrice } from '../../util/format';
 import * as CartActions from '../../store/models/cart/actions';
 
-function Home({ amount, addToCart }) {
+function Home({ amount, addToCartRequest }) {
   const [productsList, setProductsList] = useState([]);
 
   useEffect(() => {
@@ -32,8 +32,8 @@ function Home({ amount, addToCart }) {
     loadProducts();
   }, []);
 
-  const handleAddProduct = product => {
-    addToCart(product);
+  const handleAddProduct = id => {
+    addToCartRequest(id);
   };
 
   return (
@@ -44,7 +44,7 @@ function Home({ amount, addToCart }) {
           <strong>{product.title}</strong>
           <span>{product.priceFormatted}</span>
 
-          <button type="button" onClick={() => handleAddProduct(product)}>
+          <button type="button" onClick={() => handleAddProduct(product.id)}>
             <div>
               <MdAddShoppingCart size={16} color="#fff" />{' '}
               {amount[product.id] || 0}
@@ -59,7 +59,7 @@ function Home({ amount, addToCart }) {
 }
 Home.propTypes = {
   amount: PropTypes.arrayOf(PropTypes.number).isRequired,
-  addToCart: PropTypes.func.isRequired,
+  addToCartRequest: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
