@@ -12,13 +12,13 @@ import { Container, ProductTable, Total } from './styles';
 import * as CartActions from '../../store/models/cart/actions';
 import { formatPrice } from '../../util/format';
 
-function Cart({ cart, totalFormatted, removeFromCart, updateAmountProduct }) {
+function Cart({ cart, totalFormatted, removeFromCart, updateAmountRequest }) {
   function increment(product) {
-    updateAmountProduct(product.id, product.amount + 1);
+    updateAmountRequest(product.id, product.amount + 1);
   }
 
   function decrement(product) {
-    updateAmountProduct(product.id, product.amount - 1);
+    updateAmountRequest(product.id, product.amount - 1);
   }
 
   return (
@@ -92,7 +92,7 @@ Cart.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.object).isRequired,
   totalFormatted: PropTypes.string.isRequired,
   removeFromCart: PropTypes.func.isRequired,
-  updateAmountProduct: PropTypes.func.isRequired,
+  updateAmountRequest: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
