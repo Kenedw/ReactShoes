@@ -90,7 +90,7 @@ function Cart({ cart, totalFormatted, removeFromCart, updateAmountProduct }) {
 }
 Cart.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.object).isRequired,
-  totalFormatted: PropTypes.number.isRequired,
+  totalFormatted: PropTypes.string.isRequired,
   removeFromCart: PropTypes.func.isRequired,
   updateAmountProduct: PropTypes.func.isRequired,
 };
