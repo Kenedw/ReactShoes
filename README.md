@@ -1,0 +1,2 @@
+# ReactShoes
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/40c0a5498dbd4017b6ac5dec9170f147)](https://app.codacy.com/manual/Kenedw/ReactShoes?utm_source=github.com&utm_medium=referral&utm_content=Kenedw/ReactShoes&utm_campaign=Badge_Grade_Dashboard)
