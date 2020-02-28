@@ -16,7 +16,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['react', 'prettier', 'react-hooks'],
   rules: {
     'prettier/prettier': 'error',
     'import/prefer-default-export': 'off',
@@ -26,6 +26,8 @@ module.exports = {
     'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', 'js'] }],
     'react/state-in-constructor': 'off',
     'react/static-property-placement': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     'jsx-a11y/control-has-associated-label': 'off',
   },
 };
